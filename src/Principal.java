@@ -8,6 +8,11 @@ public class Principal {
         miPelicula.muestraFichaTecnica();
         miPelicula.evalua(10);
         miPelicula.evalua(10);
+        miPelicula.evalua(7.8);
+        System.out.println("******************");
+        miPelicula.sumaDeLasEvaluaciones = 2;
+        miPelicula.totalDeLasEvaluaciones = 1;
+        System.out.println(miPelicula.calculaMedia());
 
 
         System.out.println(miPelicula.sumaDeLasEvaluaciones);
