@@ -1,4 +1,5 @@
 import com.aluracursos.screenmatch.modelos.Pelicula;
+import com.aluracursos.screenmatch.modelos.Serie;
 
 public class Principal {
     public static void main(String[] args) {
@@ -14,12 +15,13 @@ public class Principal {
         System.out.println(miPelicula.getTotalDeLasEvaluaciones());
         System.out.println(miPelicula.calculaMedia());
 
-
-//        com.aluracursos.screenmatch.modelos.Pelicula otraPelicula = new com.aluracursos.screenmatch.modelos.Pelicula();
-//        otraPelicula.nombre = "Matrix";
-//        otraPelicula.fechaDeLanzamiento = 1998;
-//        otraPelicula.duracionEnMinutos = 130;
-//
-//        otraPelicula.muestraFichaTecnica();
+        Serie malcom = new Serie();
+        malcom.setNombre("Malcom el del medio");
+        malcom.setFechaDeLanzamiento(2006);
+        malcom.setTemporadas(7);
+        malcom.setMinutosPorEpisodio(30);
+        malcom.setEpisodiosPorTemporada(8);
+        malcom.muestraFichaTecnica();
+        System.out.println(malcom.getDuracionEnMinutos());
     }
 }
