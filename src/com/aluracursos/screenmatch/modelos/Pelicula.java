@@ -13,7 +13,7 @@ public class Pelicula extends Titulo implements Clasificacion {
     }
 
     @Override
-    public int getClasificacion() {
+    public int getClasificacion() { // Para usar implements de una interfaz necesitamos obtener sus métodos
         return (int) (calculaMedia() / 2);
     }
 }
