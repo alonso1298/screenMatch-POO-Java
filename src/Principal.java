@@ -1,3 +1,4 @@
+import com.aluracursos.screenmatch.calculos.CalculadoraDeTiempo;
 import com.aluracursos.screenmatch.modelos.Pelicula;
 import com.aluracursos.screenmatch.modelos.Serie;
 
@@ -23,5 +24,17 @@ public class Principal {
         malcom.setEpisodiosPorTemporada(8);
         malcom.muestraFichaTecnica();
         System.out.println(malcom.getDuracionEnMinutos());
+
+        Pelicula otraPelicula = new Pelicula();
+        otraPelicula.setNombre("Interestelar");
+        otraPelicula.setFechaDeLanzamiento(2016);
+        otraPelicula.setDuracionEnMinutos(180);
+
+        CalculadoraDeTiempo calculadora = new CalculadoraDeTiempo();
+        calculadora.incluye(miPelicula);
+        calculadora.incluye(malcom);
+        calculadora.incluye(otraPelicula);
+        System.out.println("Tiempo necesario para ver tus títulos favoritos estas vacaciones: "+ calculadora.getTiempoTotal() + " minutos");
+
     }
 }
