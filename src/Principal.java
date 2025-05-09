@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 import com.aluracursos.screenmatch.calculos.CalculadoraDeTiempo;
 import com.aluracursos.screenmatch.calculos.FiltroRecomendacion;
 import com.aluracursos.screenmatch.modelos.Episodio;
@@ -48,5 +50,21 @@ public class Principal {
         episodio.setTotalVisualizaciones(50);
 
         filtroRecomendacion.fitra(episodio);
+
+        Pelicula peliculaDeAlonso = new Pelicula(); // Var hace la inferencia de datos y no hay necesidad de poner Pelicula
+        peliculaDeAlonso.setNombre("El señor de los anillos");
+        peliculaDeAlonso.setDuracionEnMinutos(180);
+        peliculaDeAlonso.setFechaDeLanzamiento(2001);
+
+        ArrayList<Pelicula> listaDePEliculas = new ArrayList<>();
+        listaDePEliculas.add(peliculaDeAlonso);
+        listaDePEliculas.add(miPelicula);
+        listaDePEliculas.add(otraPelicula);
+        
+        System.out.println("Tamanaño de la lista: " + listaDePEliculas.size());
+        System.out.println("La primera pelicula es: " + listaDePEliculas.get(0).getNombre());
+
+        System.out.println(listaDePEliculas);
+
     }
 }
