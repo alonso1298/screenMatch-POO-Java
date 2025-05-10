@@ -64,7 +64,9 @@ public class Principal {
         System.out.println("Tamanaño de la lista: " + listaDePEliculas.size());
         System.out.println("La primera pelicula es: " + listaDePEliculas.get(0).getNombre());
 
-        System.out.println(listaDePEliculas);
+        System.out.println(listaDePEliculas.toString());
+
+        System.out.println("toString de la pelicula " + listaDePEliculas.get(0).toString());
 
     }
 }
