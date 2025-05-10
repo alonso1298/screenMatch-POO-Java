@@ -8,8 +8,7 @@ import com.aluracursos.screenmatch.modelos.Serie;
 
 public class Principal {
     public static void main(String[] args) {
-        Pelicula miPelicula = new Pelicula();
-        miPelicula.setNombre("Encanto");
+        Pelicula miPelicula = new Pelicula("Encanto");
         miPelicula.setFechaDeLanzamiento(2021);
         miPelicula.setDuracionEnMinutos(120);
 
@@ -29,8 +28,7 @@ public class Principal {
         malcom.muestraFichaTecnica();
         System.out.println(malcom.getDuracionEnMinutos());
 
-        Pelicula otraPelicula = new Pelicula();
-        otraPelicula.setNombre("Interestelar");
+        Pelicula otraPelicula = new Pelicula("Interestelar");
         otraPelicula.setFechaDeLanzamiento(2016);
         otraPelicula.setDuracionEnMinutos(180);
 
@@ -51,8 +49,7 @@ public class Principal {
 
         filtroRecomendacion.fitra(episodio);
 
-        Pelicula peliculaDeAlonso = new Pelicula(); // Var hace la inferencia de datos y no hay necesidad de poner Pelicula
-        peliculaDeAlonso.setNombre("El señor de los anillos");
+        var peliculaDeAlonso = new Pelicula("El señor de los anillos"); // Var hace la inferencia de datos y no hay necesidad de poner Pelicula
         peliculaDeAlonso.setDuracionEnMinutos(180);
         peliculaDeAlonso.setFechaDeLanzamiento(2001);
 
@@ -63,9 +60,7 @@ public class Principal {
         
         System.out.println("Tamanaño de la lista: " + listaDePEliculas.size());
         System.out.println("La primera pelicula es: " + listaDePEliculas.get(0).getNombre());
-
         System.out.println(listaDePEliculas.toString());
-
         System.out.println("toString de la pelicula " + listaDePEliculas.get(0).toString());
 
     }
