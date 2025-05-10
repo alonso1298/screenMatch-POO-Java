@@ -8,8 +8,7 @@ import com.aluracursos.screenmatch.modelos.Serie;
 
 public class Principal {
     public static void main(String[] args) {
-        Pelicula miPelicula = new Pelicula("Encanto");
-        miPelicula.setFechaDeLanzamiento(2021);
+        Pelicula miPelicula = new Pelicula("Encanto", 2021);
         miPelicula.setDuracionEnMinutos(120);
 
         miPelicula.muestraFichaTecnica();
@@ -19,17 +18,14 @@ public class Principal {
         System.out.println(miPelicula.getTotalDeLasEvaluaciones());
         System.out.println(miPelicula.calculaMedia());
 
-        Serie malcom = new Serie();
-        malcom.setNombre("Malcom el del medio");
-        malcom.setFechaDeLanzamiento(2006);
+        Serie malcom = new Serie("Malcom el del medio", 2006);
         malcom.setTemporadas(7);
         malcom.setMinutosPorEpisodio(30);
         malcom.setEpisodiosPorTemporada(8);
         malcom.muestraFichaTecnica();
         System.out.println(malcom.getDuracionEnMinutos());
 
-        Pelicula otraPelicula = new Pelicula("Interestelar");
-        otraPelicula.setFechaDeLanzamiento(2016);
+        Pelicula otraPelicula = new Pelicula("Interestelar", 2016);
         otraPelicula.setDuracionEnMinutos(180);
 
         CalculadoraDeTiempo calculadora = new CalculadoraDeTiempo();
@@ -49,9 +45,8 @@ public class Principal {
 
         filtroRecomendacion.fitra(episodio);
 
-        var peliculaDeAlonso = new Pelicula("El señor de los anillos"); // Var hace la inferencia de datos y no hay necesidad de poner Pelicula
+        var peliculaDeAlonso = new Pelicula("El señor de los anillos", 2001); // Var hace la inferencia de datos y no hay necesidad de poner Pelicula
         peliculaDeAlonso.setDuracionEnMinutos(180);
-        peliculaDeAlonso.setFechaDeLanzamiento(2001);
 
         ArrayList<Pelicula> listaDePEliculas = new ArrayList<>();
         listaDePEliculas.add(peliculaDeAlonso);

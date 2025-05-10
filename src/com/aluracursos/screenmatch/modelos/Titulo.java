@@ -8,6 +8,11 @@ public class Titulo {
     private double sumaDeLasEvaluaciones; // Private evita que pueda ser modificado y se bloquea
     private int totalDeLasEvaluaciones;
 
+    public Titulo(String nombre, int fechaDeLanzamiento) {
+        this.nombre = nombre;
+        this.fechaDeLanzamiento = fechaDeLanzamiento;
+    }
+
     public String getNombre() {
         return nombre;
     }
