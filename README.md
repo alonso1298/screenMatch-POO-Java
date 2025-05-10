@@ -28,7 +28,7 @@ screenMatch-POO-Java/
 │   │   ├── Serie.java
 │   │   └── Titulo.java
 │   ├── principal/
-│   │   └── Principal.java
+│   │   └── com.aluracursos.screenmatch.principal.Principal.java
 │   └── util/
 │       └── CalculadoraDeTiempo.java
 ├── README.md
@@ -44,12 +44,12 @@ cd screenMatch-POO-Java
 2. Compilar el proyecto:
 
 ``` bash
-javac src/principal/Principal.java
+javac src/principal/com.aluracursos.screenmatch.principal.Principal.java
 ```
 3. Ejecutar la aplicación:
 
 ```bash
-java -cp src principal.Principal
+java -cp src principal.com.aluracursos.screenmatch.principal.Principal
 ```
 
 ## 📄 Licencia

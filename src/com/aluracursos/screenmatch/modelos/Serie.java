@@ -6,7 +6,7 @@ public class Serie extends Titulo {
     private int minutosPorEpisodio;
 
     public Serie(String nombre, int fechaDeLanzamiento) {
-    super(nombre, fechaDeLanzamiento);
+        super(nombre, fechaDeLanzamiento);
     }
 
     @Override
