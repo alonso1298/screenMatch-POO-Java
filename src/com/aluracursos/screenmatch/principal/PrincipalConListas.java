@@ -2,6 +2,7 @@ package com.aluracursos.screenmatch.principal;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
 import com.aluracursos.screenmatch.modelos.Pelicula;
 import com.aluracursos.screenmatch.modelos.Serie;
@@ -42,5 +43,8 @@ public class PrincipalConListas {
 
         Collections.sort(lista);
         System.out.println("Lista de titulos ordenados: " + lista);
+
+        lista.sort(Comparator.comparing(Titulo::getFechaDeLanzamiento));
+        System.out.println("Lista ordenada por fecha: " + lista);
     }
 }
