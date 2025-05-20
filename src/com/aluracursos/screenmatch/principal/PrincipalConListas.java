@@ -1,6 +1,7 @@
 package com.aluracursos.screenmatch.principal;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import com.aluracursos.screenmatch.modelos.Pelicula;
 import com.aluracursos.screenmatch.modelos.Serie;
@@ -24,10 +25,20 @@ public class PrincipalConListas {
         lista.add(malcom);
 
         for (Titulo item: lista) {
-            System.out.println(item);
-            Pelicula pelicula = (Pelicula) item;
-            System.out.println(pelicula.getClasificacion());
+            System.out.println(item.getNombre());
+            if(item instanceof Pelicula pelicula && pelicula.getClasificacion() > 2){
+                System.out.println(pelicula.getClasificacion());
+            }
         }
+
+        ArrayList<String> listaDeArtistas = new ArrayList<>();
+        listaDeArtistas.add("Pedro Pascal");
+        listaDeArtistas.add("Antonio Banderas");
+        listaDeArtistas.add("Isable Merced");
+
+        System.out.println("Lista de artistas no ordenada: " + listaDeArtistas);
+        Collections.sort(listaDeArtistas);
+        System.out.println("Lista de artistas ordenada:" + listaDeArtistas);
 
     }
 }
