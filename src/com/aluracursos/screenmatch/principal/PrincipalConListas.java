@@ -3,6 +3,8 @@ package com.aluracursos.screenmatch.principal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.LinkedList;
+import java.util.List;
 
 import com.aluracursos.screenmatch.modelos.Pelicula;
 import com.aluracursos.screenmatch.modelos.Serie;
@@ -19,7 +21,7 @@ public class PrincipalConListas {
         peliculaDeAlonso.evalua(10);
         Serie malcom = new Serie("Malcom el del medio", 2006);
 
-        ArrayList<Titulo> lista = new ArrayList<>();
+        List<Titulo> lista = new LinkedList<>();
         lista.add(miPelicula);
         lista.add(otraPelicula);
         lista.add(peliculaDeAlonso);
