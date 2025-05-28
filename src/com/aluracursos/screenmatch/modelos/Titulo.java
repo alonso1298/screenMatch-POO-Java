@@ -17,6 +17,12 @@ public class Titulo implements Comparable<Titulo>{
         this.fechaDeLanzamiento = fechaDeLanzamiento;
     }
 
+    public Titulo(TituloOmdb miTituloOmdb) {
+        this.nombre = miTituloOmdb.title();
+        this.fechaDeLanzamiento = Integer.valueOf(miTituloOmdb.year()); // Se hace este parseo ya que el constructor de TituloOmdb esta en String 
+        this.duracionEnMinutos = Integer.valueOf(miTituloOmdb.runtime().substring(0, 2)); // substring obtiene el valor de cierto indice
+    }
+
     public String getNombre() {
         return nombre;
     }
@@ -75,7 +81,8 @@ public class Titulo implements Comparable<Titulo>{
 
     @Override
     public String toString() {
-        return "nombre=" + nombre + ", fechaDeLanzamiento=" + fechaDeLanzamiento;
+        return "nombre=" + nombre + ", fechaDeLanzamiento=" + fechaDeLanzamiento +
+        ", duracion=" + duracionEnMinutos;
     }
 
     

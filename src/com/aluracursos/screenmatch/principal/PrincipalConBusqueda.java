@@ -9,7 +9,11 @@ import java.net.http.HttpResponse.BodyHandlers;
 import java.util.Scanner;
 
 import com.aluracursos.screenmatch.modelos.Titulo;
+// import com.aluracursos.screenmatch.modelos.Titulo;
+import com.aluracursos.screenmatch.modelos.TituloOmdb;
+import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 public class PrincipalConBusqueda {
     public static void main(String[] args) throws IOException, InterruptedException {
@@ -33,10 +37,13 @@ public class PrincipalConBusqueda {
         String json = response.body();
         System.out.println(json);
 
-        Gson gson = new Gson();
-        Titulo miTitulo = gson.fromJson(json, Titulo.class);
+        Gson gson = new GsonBuilder()
+            .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
+            .create(); // setFieldNamingPolicy permite decirle a Gson que vamos a usar una politica que sera Upper camel case 
+        TituloOmdb miTituloOmdb = gson.fromJson(json, TituloOmdb.class);
+        System.out.println(miTituloOmdb);
 
+        Titulo miTitulo = new Titulo(miTituloOmdb);
         System.out.println(miTitulo);
-
     }
 }
