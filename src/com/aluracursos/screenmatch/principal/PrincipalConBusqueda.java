@@ -8,12 +8,15 @@ import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
 import java.util.Scanner;
 
+import com.aluracursos.screenmatch.modelos.Titulo;
+import com.google.gson.Gson;
+
 public class PrincipalConBusqueda {
     public static void main(String[] args) throws IOException, InterruptedException {
 
         Scanner lectura = new Scanner(System.in);
         System.out.println("Escriba el nombre de una pelicula: ");
-        
+
         String busqueda = lectura.nextLine();
         String direccion = "http://www.omdbapi.com/?t=" + busqueda + "&apikey=517489d5";
 
@@ -27,7 +30,13 @@ public class PrincipalConBusqueda {
         HttpResponse<String> response = client
             .send(request, BodyHandlers.ofString());
 
-        System.out.println(response.body());
+        String json = response.body();
+        System.out.println(json);
+
+        Gson gson = new Gson();
+        Titulo miTitulo = gson.fromJson(json, Titulo.class);
+
+        System.out.println(miTitulo);
 
     }
 }
