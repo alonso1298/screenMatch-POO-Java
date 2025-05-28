@@ -6,12 +6,22 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
+import java.util.Scanner;
 
 public class PrincipalConBusqueda {
     public static void main(String[] args) throws IOException, InterruptedException {
+
+        Scanner lectura = new Scanner(System.in);
+        System.out.println("Escriba el nombre de una pelicula: ");
+        
+        String busqueda = lectura.nextLine();
+        String direccion = "http://www.omdbapi.com/?t=" + busqueda + "&apikey=517489d5";
+
+        lectura.close();
+
         HttpClient client = HttpClient.newHttpClient();
         HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create("http://www.omdbapi.com/?t=ironman&apikey=517489d5"))
+            .uri(URI.create(direccion))
             .build();
 
         HttpResponse<String> response = client
