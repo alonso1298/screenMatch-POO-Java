@@ -43,7 +43,13 @@ public class PrincipalConBusqueda {
         TituloOmdb miTituloOmdb = gson.fromJson(json, TituloOmdb.class);
         System.out.println(miTituloOmdb);
 
-        Titulo miTitulo = new Titulo(miTituloOmdb);
-        System.out.println(miTitulo);
+        try { // Se intentara ejecutar este codigo
+            Titulo miTitulo = new Titulo(miTituloOmdb);
+            System.out.println(miTitulo);
+        } catch (NumberFormatException e) { // Si hay un erro ejecutara este codigo
+            System.out.println("Ocurrio un error: ");
+            System.out.println(e.getMessage());
+        }
+        System.out.println("Finalizo la ejecucion del programa");
     }
 }
