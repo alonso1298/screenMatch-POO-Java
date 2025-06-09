@@ -26,29 +26,34 @@ public class PrincipalConBusqueda {
 
         lectura.close();
 
-        HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder()
-            .uri(URI.create(direccion))
-            .build();
-
-        HttpResponse<String> response = client
-            .send(request, BodyHandlers.ofString());
-
-        String json = response.body();
-        System.out.println(json);
-
-        Gson gson = new GsonBuilder()
-            .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
-            .create(); // setFieldNamingPolicy permite decirle a Gson que vamos a usar una politica que sera Upper camel case 
-        TituloOmdb miTituloOmdb = gson.fromJson(json, TituloOmdb.class);
-        System.out.println(miTituloOmdb);
-
         try { // Se intentara ejecutar este codigo
-            Titulo miTitulo = new Titulo(miTituloOmdb);
-            System.out.println(miTitulo);
-        } catch (NumberFormatException e) { // Si hay un erro ejecutara este codigo
-            System.out.println("Ocurrio un error: ");
-            System.out.println(e.getMessage());
+
+            HttpClient client = HttpClient.newHttpClient();
+            HttpRequest request = HttpRequest.newBuilder()
+                .uri(URI.create(direccion))
+                .build();
+
+            HttpResponse<String> response = client
+                .send(request, BodyHandlers.ofString());
+
+            String json = response.body();
+            System.out.println(json);
+
+            Gson gson = new GsonBuilder()
+                .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
+                .create(); // setFieldNamingPolicy permite decirle a Gson que vamos a usar una politica que sera Upper camel case 
+            TituloOmdb miTituloOmdb = gson.fromJson(json, TituloOmdb.class);
+            System.out.println(miTituloOmdb);
+
+                Titulo miTitulo = new Titulo(miTituloOmdb);
+                System.out.println("Titulo ya convertido: " + miTitulo);
+        }catch (NumberFormatException e) { // Si hay un erro ejecutara este codigo
+                System.out.println("Ocurrio un error: ");
+                System.out.println(e.getMessage());
+        }catch(IllegalArgumentException e){
+            System.out.println("Error en la URI, verifique la dirección.");
+        }catch (Exception e){
+            System.out.println("Ocurrio un error inesperado");
         }
         System.out.println("Finalizo la ejecucion del programa");
     }
