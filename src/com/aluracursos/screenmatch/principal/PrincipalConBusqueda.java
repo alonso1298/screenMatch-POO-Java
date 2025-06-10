@@ -1,5 +1,6 @@
 package com.aluracursos.screenmatch.principal;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -23,6 +24,11 @@ public class PrincipalConBusqueda {
         Scanner lectura = new Scanner(System.in);
         List<Titulo> titulos = new ArrayList<>();
 
+        Gson gson = new GsonBuilder()
+                .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
+                .setPrettyPrinting()
+                .create(); // setFieldNamingPolicy permite decirle a Gson que vamos a usar una politica que sera Upper camel case 
+
         while(true){
 
             System.out.println("Escriba el nombre de una pelicula: ");
@@ -33,7 +39,6 @@ public class PrincipalConBusqueda {
             }
 
             String direccion = "http://www.omdbapi.com/?t=" + busqueda.replace(" ", "+") + "&apikey=517489d5";
-            lectura.close();
 
             try { // Se intentara ejecutar este codigo
 
@@ -48,9 +53,6 @@ public class PrincipalConBusqueda {
                 String json = response.body();
                 System.out.println(json);
 
-                Gson gson = new GsonBuilder()
-                    .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
-                    .create(); // setFieldNamingPolicy permite decirle a Gson que vamos a usar una politica que sera Upper camel case 
                 TituloOmdb miTituloOmdb = gson.fromJson(json, TituloOmdb.class);
                 System.out.println(miTituloOmdb);
 
@@ -69,6 +71,12 @@ public class PrincipalConBusqueda {
             }
         }
         System.out.println(titulos);
+
+        FileWriter escritura = new FileWriter("titulos.json");
+        escritura.write(gson.toJson(titulos));
+
         System.out.println("Finalizo la ejecucion del programa");
+        escritura.close();
+        lectura.close();
     }
 }
