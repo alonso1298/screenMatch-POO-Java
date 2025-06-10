@@ -1,12 +1,13 @@
 package com.aluracursos.screenmatch.principal;
 
-import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import com.alura.screenmatch.excepcion.ErrorEnConversionDeDuracionException;
@@ -19,49 +20,55 @@ import com.google.gson.GsonBuilder;
 
 public class PrincipalConBusqueda {
     public static void main(String[] args) throws IOException, InterruptedException {
-
         Scanner lectura = new Scanner(System.in);
-        System.out.println("Escriba el nombre de una pelicula: ");
+        List<Titulo> titulos = new ArrayList<>();
 
-        String busqueda = lectura.nextLine();
-        String direccion = "http://www.omdbapi.com/?t=" + busqueda.replace(" ", "+") + "&apikey=517489d5";
+        while(true){
 
-        lectura.close();
+            System.out.println("Escriba el nombre de una pelicula: ");
+            String busqueda = lectura.nextLine();
 
-        try { // Se intentara ejecutar este codigo
+            if(busqueda.equals("salir")){
+                break;
+            }
 
-            HttpClient client = HttpClient.newHttpClient();
-            HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(direccion))
-                .build();
+            String direccion = "http://www.omdbapi.com/?t=" + busqueda.replace(" ", "+") + "&apikey=517489d5";
+            lectura.close();
 
-            HttpResponse<String> response = client
-                .send(request, BodyHandlers.ofString());
+            try { // Se intentara ejecutar este codigo
 
-            String json = response.body();
-            System.out.println(json);
+                HttpClient client = HttpClient.newHttpClient();
+                HttpRequest request = HttpRequest.newBuilder()
+                    .uri(URI.create(direccion))
+                    .build();
 
-            Gson gson = new GsonBuilder()
-                .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
-                .create(); // setFieldNamingPolicy permite decirle a Gson que vamos a usar una politica que sera Upper camel case 
-            TituloOmdb miTituloOmdb = gson.fromJson(json, TituloOmdb.class);
-            System.out.println(miTituloOmdb);
+                HttpResponse<String> response = client
+                    .send(request, BodyHandlers.ofString());
 
-                Titulo miTitulo = new Titulo(miTituloOmdb);
-                System.out.println("Titulo ya convertido: " + miTitulo);
+                String json = response.body();
+                System.out.println(json);
 
-                FileWriter escritura = new FileWriter("peliculas.txt"); // Es una clase utilizada para el envio y entrada de datos
-                escritura.write(miTitulo.toString());
-                escritura.close();
+                Gson gson = new GsonBuilder()
+                    .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
+                    .create(); // setFieldNamingPolicy permite decirle a Gson que vamos a usar una politica que sera Upper camel case 
+                TituloOmdb miTituloOmdb = gson.fromJson(json, TituloOmdb.class);
+                System.out.println(miTituloOmdb);
 
-        }catch (NumberFormatException e) { // Si hay un erro ejecutara este codigo
-                System.out.println("Ocurrio un error: ");
+                    Titulo miTitulo = new Titulo(miTituloOmdb);
+                    System.out.println("Titulo ya convertido: " + miTitulo);
+
+                    titulos.add(miTitulo);
+
+            }catch (NumberFormatException e) { // Si hay un erro ejecutara este codigo
+                    System.out.println("Ocurrio un error: ");
+                    System.out.println(e.getMessage());
+            }catch(IllegalArgumentException e){
+                System.out.println("Error en la URI, verifique la dirección.");
+            }catch (ErrorEnConversionDeDuracionException e){
                 System.out.println(e.getMessage());
-        }catch(IllegalArgumentException e){
-            System.out.println("Error en la URI, verifique la dirección.");
-        }catch (ErrorEnConversionDeDuracionException e){
-            System.out.println(e.getMessage());
+            }
         }
+        System.out.println(titulos);
         System.out.println("Finalizo la ejecucion del programa");
     }
 }
