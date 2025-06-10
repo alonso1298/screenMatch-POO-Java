@@ -8,6 +8,7 @@ import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
 import java.util.Scanner;
 
+import com.alura.screenmatch.excepcion.ErrorEnConversionDeDuracionException;
 import com.aluracursos.screenmatch.modelos.Titulo;
 // import com.aluracursos.screenmatch.modelos.Titulo;
 import com.aluracursos.screenmatch.modelos.TituloOmdb;
@@ -22,7 +23,7 @@ public class PrincipalConBusqueda {
         System.out.println("Escriba el nombre de una pelicula: ");
 
         String busqueda = lectura.nextLine();
-        String direccion = "http://www.omdbapi.com/?t=" + busqueda + "&apikey=517489d5";
+        String direccion = "http://www.omdbapi.com/?t=" + busqueda.replace(" ", "+") + "&apikey=517489d5";
 
         lectura.close();
 
@@ -52,8 +53,8 @@ public class PrincipalConBusqueda {
                 System.out.println(e.getMessage());
         }catch(IllegalArgumentException e){
             System.out.println("Error en la URI, verifique la dirección.");
-        }catch (Exception e){
-            System.out.println("Ocurrio un error inesperado");
+        }catch (ErrorEnConversionDeDuracionException e){
+            System.out.println(e.getMessage());
         }
         System.out.println("Finalizo la ejecucion del programa");
     }
