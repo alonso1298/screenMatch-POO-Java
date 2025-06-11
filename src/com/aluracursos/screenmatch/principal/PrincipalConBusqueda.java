@@ -25,9 +25,9 @@ public class PrincipalConBusqueda {
         List<Titulo> titulos = new ArrayList<>();
 
         Gson gson = new GsonBuilder()
-                .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE)
+                .setFieldNamingPolicy(FieldNamingPolicy.UPPER_CAMEL_CASE) // setFieldNamingPolicy permite decirle a Gson que vamos a usar una politica que sera Upper camel case 
                 .setPrettyPrinting()
-                .create(); // setFieldNamingPolicy permite decirle a Gson que vamos a usar una politica que sera Upper camel case 
+                .create();
 
         while(true){
 
@@ -56,10 +56,10 @@ public class PrincipalConBusqueda {
                 TituloOmdb miTituloOmdb = gson.fromJson(json, TituloOmdb.class);
                 System.out.println(miTituloOmdb);
 
-                    Titulo miTitulo = new Titulo(miTituloOmdb);
-                    System.out.println("Titulo ya convertido: " + miTitulo);
+                Titulo miTitulo = new Titulo(miTituloOmdb);
+                System.out.println("Titulo ya convertido: " + miTitulo);
 
-                    titulos.add(miTitulo);
+                titulos.add(miTitulo);
 
             }catch (NumberFormatException e) { // Si hay un erro ejecutara este codigo
                     System.out.println("Ocurrio un error: ");
